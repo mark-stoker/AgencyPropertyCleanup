@@ -1,12 +1,12 @@
 using AgencyPropertyCleanup;
 using AgencyPropertyCleanup.AgencyFactoryMethod;
+using AgencyPropertyCleanup.AgencyFactoryMethod.Interfaces;
 using NUnit.Framework;
 
 namespace AgencyPropertyCleanupTests
 {
 	public class ContraryAgencyTests
 	{
-		//I need to pre-populate these, autofixture?
 		private IProperty _agencyProperty;
 		private IProperty _databaseProperty;
 
@@ -18,8 +18,8 @@ namespace AgencyPropertyCleanupTests
 				Address = "32 Sir John-Young Crescent, Sydney, NSW.",
 				AgencyCode = "OTBRE",
 				Name = "Apartments Summit The",
-				//Longitude = -33.87053923302913m,
-				//Latitude = 151.19248064675406m
+				Longitude = -33.87053923302913m,
+				Latitude = 151.19248064675406m
 			};
 
 			_databaseProperty = new Property
@@ -36,8 +36,8 @@ namespace AgencyPropertyCleanupTests
 		public void ContraryRealEstateMatchingRules_PropertyNameReversedAndMatchesDB_MatchMethodReturnsTrue()
 		{
 			//Arrange
-			var agencyFactory = new ContraryAgencyFactory();
-			var agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new ContraryAgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency();
 
 			//Act
 			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
@@ -50,8 +50,8 @@ namespace AgencyPropertyCleanupTests
 		public void ContraryRealEstateMatchingRules_PropertyNameReversedAndDontMatchesDB_MatchMethodReturnsFalse()
 		{
 			//Arrange
-			var agencyFactory = new ContraryAgencyFactory();
-			var agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new ContraryAgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency();
 			_agencyProperty.Name = "some new value";
 
 			//Act
@@ -65,8 +65,8 @@ namespace AgencyPropertyCleanupTests
 		public void ContraryRealEstateMatchingRules_PropertyNameIsNull_MatchMethodReturnsFalse()
 		{
 			//Arrange
-			var agencyFactory = new ContraryAgencyFactory();
-			var agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new ContraryAgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency();
 			_agencyProperty.Name = null;
 
 			//Act

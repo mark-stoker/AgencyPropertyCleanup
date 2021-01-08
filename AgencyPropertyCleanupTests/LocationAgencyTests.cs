@@ -1,5 +1,6 @@
 using AgencyPropertyCleanup;
 using AgencyPropertyCleanup.AgencyFactoryMethod;
+using AgencyPropertyCleanup.AgencyFactoryMethod.Interfaces;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 
@@ -38,8 +39,8 @@ namespace AgencyPropertyCleanupTests
 		public void LocationRealEstatePropertyMatchingRules_CoordinatesMatchExactly_MatchMethodReturnsTrue()
 		{
 			//Arrange
-			var agencyFactory = new LocationAgencyFactory();
-			var agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new LocationAgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency();
 
 			//Act
 			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
@@ -52,8 +53,8 @@ namespace AgencyPropertyCleanupTests
 		public void LocationRealEstatePropertyMatchingRules_CoordinatesAre69mApart_MatchMethodReturnsTrue()
 		{
 			//Arrange
-			var agencyFactory = new LocationAgencyFactory();
-			var agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new LocationAgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency();
 
 			//69m away
 			_agencyProperty.Longitude = -33.86974404504831m;
@@ -70,8 +71,8 @@ namespace AgencyPropertyCleanupTests
 		public void LocationRealEstatePropertyMatchingRules_CoordinatesAre350mApart_MatchMethodReturnsFalse()
 		{
 			//Arrange
-			var agencyFactory = new LocationAgencyFactory();
-			var agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new LocationAgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency();
 
 			_agencyProperty.Longitude = -33.871077461586744m;
 			_agencyProperty.Latitude = 151.19495614459848m;
@@ -87,8 +88,8 @@ namespace AgencyPropertyCleanupTests
 		public void LocationRealEstatePropertyMatchingRules_CoordinatesAre171kmAway_MatchMethodReturnsFalse()
 		{
 			//Arrange
-			var agencyFactory = new LocationAgencyFactory();
-			var agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new LocationAgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency();
 
 			_agencyProperty.Longitude = -32.92175413965179m;
 			_agencyProperty.Latitude = 151.78209440879309m;
@@ -104,8 +105,8 @@ namespace AgencyPropertyCleanupTests
 		public void LocationRealEstatePropertyMatchingRules_CoordinatesPropertiesAreZero_MatchMethodReturnsFalse()
 		{
 			//Arrange
-			var agencyFactory = new LocationAgencyFactory();
-			var agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new LocationAgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency();
 
 			_agencyProperty.Longitude = 0.00m;
 			_agencyProperty.Latitude = 0.00m;
@@ -121,8 +122,8 @@ namespace AgencyPropertyCleanupTests
 		public void LocationRealEstatePropertyMatchingRules_AgencyCodesDontMatch_MatchMethodReturnsFalse()
 		{
 			//Arrange
-			var agencyFactory = new LocationAgencyFactory();
-			var agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new LocationAgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency();
 
 			_agencyProperty.AgencyCode = "CRE";
 
@@ -137,8 +138,8 @@ namespace AgencyPropertyCleanupTests
 		public void LocationRealEstatePropertyMatchingRules_AgencyCodesAreNull_MatchMethodReturnsFalse()
 		{
 			//Arrange
-			var agencyFactory = new LocationAgencyFactory();
-			var agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new LocationAgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency();
 
 			_agencyProperty.AgencyCode = null;
 
