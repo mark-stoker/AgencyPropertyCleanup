@@ -1,9 +1,0 @@
-C:\Code\AgencyPropertyCleanup\AgencyPropertyCleanup\bin\Debug\netcoreapp2.1\AgencyPropertyCleanup.deps.json
-C:\Code\AgencyPropertyCleanup\AgencyPropertyCleanup\bin\Debug\netcoreapp2.1\AgencyPropertyCleanup.dll
-C:\Code\AgencyPropertyCleanup\AgencyPropertyCleanup\obj\Debug\netcoreapp2.1\AgencyPropertyCleanup.csproj.CoreCompileInputs.cache
-C:\Code\AgencyPropertyCleanup\AgencyPropertyCleanup\obj\Debug\netcoreapp2.1\AgencyPropertyCleanup.AssemblyInfoInputs.cache
-C:\Code\AgencyPropertyCleanup\AgencyPropertyCleanup\obj\Debug\netcoreapp2.1\AgencyPropertyCleanup.AssemblyInfo.cs
-C:\Code\AgencyPropertyCleanup\AgencyPropertyCleanup\bin\Debug\netcoreapp2.1\AgencyPropertyCleanup.pdb
-C:\Code\AgencyPropertyCleanup\AgencyPropertyCleanup\obj\Debug\netcoreapp2.1\AgencyPropertyCleanup.dll
-C:\Code\AgencyPropertyCleanup\AgencyPropertyCleanup\obj\Debug\netcoreapp2.1\AgencyPropertyCleanup.pdb
-C:\Code\AgencyPropertyCleanup\AgencyPropertyCleanup\obj\Debug\netcoreapp2.1\AgencyPropertyCleanup.csprojAssemblyReference.cache
