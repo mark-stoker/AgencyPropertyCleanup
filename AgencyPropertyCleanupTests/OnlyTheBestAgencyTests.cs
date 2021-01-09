@@ -26,9 +26,9 @@ namespace AgencyPropertyCleanupTests
 			//TODO put in punctation here too, assume brief is not a mistake
 			_databaseProperty = new Property
 			{
-				Address = "32 Sir John Young Crescent Sydney NSW",
+				Address = "32 Sir John Young Crescent, Sydney NSW",
 				AgencyCode = "OTBRE",
-				Name = "Super High Apartments Sydney",
+				Name = "Super High Apartments, Sydney",
 				Longitude = -33.87053923302913m,
 				Latitude = 151.19248064675406m
 			};
