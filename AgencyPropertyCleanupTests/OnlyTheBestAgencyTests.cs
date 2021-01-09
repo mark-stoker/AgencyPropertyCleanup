@@ -139,8 +139,8 @@ namespace AgencyPropertyCleanupTests
 			IAgencyFactory agencyFactory = new OnlyTheBestAgencyFactory();
 			IAgency agency = agencyFactory.CreateAgency();
 
-			_agencyProperty.Name = "super   high     apartments       sydney";
-			_agencyProperty.Address = "32   sir   john    young    crescent    sydney      nsw";
+			_agencyProperty.Name = "super     high     apartments         sydney";
+			_agencyProperty.Address = "32         sir   john      young    crescent             sydney            nsw";
 
 			_databaseProperty.Name = "Super High Apartments Sydney";
 			_databaseProperty.Address = "32 Sir John Young Crescent Sydney NSW";
@@ -153,27 +153,44 @@ namespace AgencyPropertyCleanupTests
 			Assert.AreEqual(expectedResult, result);
 		}
 
-		//[Test]
-		//public void OnlyTheBestPropertyMatchingRules_PropertyNameAndAddressContainsRandomWhiteSpace_MatchMethodReturnsTrue()
-		//{
-		//	//Arrange
-		//	var agencyFactory = new OnlyTheBestAgencyFactory();
-		//	var agency = agencyFactory.CreateAgency();
+		[Test]
+		public void OnlyTheBestPropertyMatchingRules_PropertyNameAndAddressContainsASCIIAcentedCharacters_MatchMethodReturnsTrue()
+		{
+			//Arrange
+			IAgencyFactory agencyFactory = new OnlyTheBestAgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency();
 
-		//	_agencyProperty.Name = "Super High APARTMENTS Sydney";
-		//	//sb.Append("\r\n\t");
-		//	_agencyProperty.Address = "32 Sir John Young Crescent, Sydney, NSW.";
+			_agencyProperty.Name = "*Sùpér*-High! ÃPARTMENTS (Sydnéy)";
+			_agencyProperty.Address = "32 Sir John-Young Créscént, Sydnéy, NSW.";
 
-		//	_databaseProperty.Name = "Super High Apartments Sydney";
-		//	_databaseProperty.Address = "32 Sir John Young Crescent Sydney NSW";
+			_databaseProperty.Name = "Sùpér High Ãpartments Sydnéy";
+			_databaseProperty.Address = "32 Sir John Young Créscént Sydnéy NSW";
 
-		//	//Act
-		//	var result = agency.IsMatch(_agencyProperty, _databaseProperty);
+			//Act
+			var expectedResult = true;
+			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
 
-		//	//Assert
-		//	Assert.AreEqual(true, result);
-		//}
+			//Assert
+			Assert.AreEqual(expectedResult, result);
+		}
+		
+		//TODO do the above test with Unicode
 
-		//TODO foreign language chars
+		[Test]
+		public void OnlyTheBestPropertyMatchingRules_PropertyNameAndAddressContainsRandomWhiteSpace_MatchMethodReturnsTrue()
+		{
+			//Arrange
+			var agencyFactory = new OnlyTheBestAgencyFactory();
+			var agency = agencyFactory.CreateAgency();
+
+			_agencyProperty.Name = "Super\n\r\t  High\n\r\t APARTMENTS\n\r\t  Sydney\n\r\t ";
+			_agencyProperty.Address = "32\n\r\t  Sir\n\r\t  John\n\r\t  Young\n\r\t  Crescent\n\r\t , Sydney\n\r\t , NSW.\n\r\t ";
+
+			//Act
+			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
+
+			//Assert
+			Assert.AreEqual(true, result);
+		}
 	}
 }
