@@ -1,7 +1,8 @@
 ﻿using System;
 using AgencyPropertyCleanup.AgencyFactoryMethod.Interfaces;
 using AgencyPropertyCleanup.Interfaces;
-using GeoCoordinatePortable;
+//using GeoCoordinatePortable;
+
 
 namespace AgencyPropertyCleanup.AgencyFactoryMethod
 {
@@ -29,33 +30,27 @@ namespace AgencyPropertyCleanup.AgencyFactoryMethod
 			return false;
 		}
 
-		public double CalculateDistance(IProperty agencyProperty, IProperty databaseProperty)
+		private double CalculateDistance(IProperty agencyProperty, IProperty databaseProperty)
 		{
-			//Todo implement the alg too, just to understand it
-			//var d1 = agencryProperty.Latitude * ((decimal)Math.PI / 180.0m);
-			//var num1 = agencryProperty.Longitude * ((decimal)Math.PI / 180.0m);
-			//var d2 = databaseProperty.Latitude * ((decimal)Math.PI / 180.0m);
-			//var num2 = databaseProperty.Longitude * ((decimal)Math.PI / 180.0m) - num1;
-			//var d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0m), 2.0m) +
-			//         Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin(num2 / 2.0m), 2.0m);
-			//return 6376500.0m * (2.0m * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0m - d3)));
+			//var agencyCoordinates = new GeoCoordinate((double)agencyProperty.Latitude, (double)agencyProperty.Longitude);
+			//var databaseCoordinates = new GeoCoordinate((double)databaseProperty.Latitude, (double)databaseProperty.Longitude);
+			//return agencyCoordinates.GetDistanceTo(databaseCoordinates);
 
-			var agencyCoordinates = new GeoCoordinate((double)agencyProperty.Longitude, (double)agencyProperty.Latitude);
-			var databaseCoordinates = new GeoCoordinate((double)databaseProperty.Longitude, (double)databaseProperty.Latitude);
-
-			return agencyCoordinates.GetDistanceTo(databaseCoordinates);
+			return GetDistance((double)agencyProperty.Longitude, (double)agencyProperty.Latitude,
+				(double)databaseProperty.Longitude, (double)databaseProperty.Latitude);
 		}
 
-		//public double GetDistanceTo(GeoCoordinate other)
-		//{
-		//	if (double.IsNaN(this.Latitude) || double.IsNaN(this.Longitude) || (double.IsNaN(other.Latitude) || double.IsNaN(other.Longitude)))
-		//		throw new ArgumentException("Argument latitude or longitude is not a number");
-		//	double d1 = this.Latitude * 0.0174532925199433;
-		//	double num1 = this.Longitude * 0.0174532925199433;
-		//	double d2 = other.Latitude * 0.0174532925199433;
-		//	double num2 = other.Longitude * 0.0174532925199433 - num1;
-		//	double d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin(num2 / 2.0), 2.0);
-		//	return 6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3)));
-		//}
+		//Returns distance in metres between two points
+		//The requirements state: assume that 1 degree of agencyLatitude or agencyLongitude is equal to 111km, I'm not sure how to apply this
+		private double GetDistance(double agencyLongitude, double agencyLatitude, double databaseLongitude, double databaseLatitude)
+		{
+			var d1 = agencyLatitude * (Math.PI / 180.0);
+			var num1 = agencyLongitude * (Math.PI / 180.0);
+			var d2 = databaseLatitude * (Math.PI / 180.0);
+			var num2 = databaseLongitude * (Math.PI / 180.0) - num1;
+			var d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin(num2 / 2.0), 2.0);
+
+			return 6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3)));
+		}
 	}
 }
