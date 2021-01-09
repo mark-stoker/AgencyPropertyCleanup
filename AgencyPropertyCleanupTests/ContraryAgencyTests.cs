@@ -131,6 +131,22 @@ namespace AgencyPropertyCleanupTests
 		}
 
 		[Test]
+		public void ContraryRealEstateMatchingRules_PropertyNameEmptyString_MatchMethodReturnsFalse()
+		{
+			//Arrange
+			IAgencyFactory agencyFactory = new ContraryAgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency();
+			_agencyProperty.Name = string.Empty;
+
+			//Act
+			var expectedResult = false;
+			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
+
+			//Assert
+			Assert.AreEqual(expectedResult, result);
+		}
+
+		[Test]
 		public void ContraryRealEstateMatchingRules_PropertyNameWithRandomWhiteSpaceCharactersReversedAndMatchesDB_MatchMethodReturnsTrue()
 		{
 			//Arrange

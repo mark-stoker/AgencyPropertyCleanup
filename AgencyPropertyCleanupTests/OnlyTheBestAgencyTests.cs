@@ -23,6 +23,7 @@ namespace AgencyPropertyCleanupTests
 				Latitude = 151.19248064675406m
 			};
 
+			//TODO put in punctation here too, assume brief is not a mistake
 			_databaseProperty = new Property
 			{
 				Address = "32 Sir John Young Crescent Sydney NSW",
@@ -58,9 +59,6 @@ namespace AgencyPropertyCleanupTests
 			_agencyProperty.Name = "Super High APARTMENTS Sydney";
 			_agencyProperty.Address = "32 Sir John Young Crescent, Sydney, NSW.";
 
-			_databaseProperty.Name = "Super High Apartments Sydney";
-			_databaseProperty.Address = "32 Sir John Young Crescent Sydney NSW";
-
 			//Act
 			var expectedResult = true;
 			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
@@ -79,8 +77,23 @@ namespace AgencyPropertyCleanupTests
 			_agencyProperty.Name = null;
 			_agencyProperty.Address = null;
 
-			_databaseProperty.Name = "Super High Apartments Sydney";
-			_databaseProperty.Address = "32 Sir John Young Crescent Sydney NSW";
+			//Act
+			var expectedResult = false;
+			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
+
+			//Assert
+			Assert.AreEqual(expectedResult, result);
+		}
+
+		[Test]
+		public void OnlyTheBestPropertyMatchingRules_PropertyNameAndAddressAreEmptyStrings_MatchMethodReturnsFalse()
+		{
+			//Arrange
+			IAgencyFactory agencyFactory = new OnlyTheBestAgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency();
+
+			_agencyProperty.Name = string.Empty;
+			_agencyProperty.Address = string.Empty;
 
 			//Act
 			var expectedResult = false;
@@ -100,9 +113,6 @@ namespace AgencyPropertyCleanupTests
 			_agencyProperty.Name = "SUPER HIGH APARTMENTS SYDNEY";
 			_agencyProperty.Address = "32 SIR JOHN YOUNG CRESCENT SYDNEY NSW";
 
-			_databaseProperty.Name = "Super High Apartments Sydney";
-			_databaseProperty.Address = "32 Sir John Young Crescent Sydney NSW";
-
 			//Act
 			var expectedResult = true;
 			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
@@ -121,9 +131,6 @@ namespace AgencyPropertyCleanupTests
 			_agencyProperty.Name = "super high apartments sydney";
 			_agencyProperty.Address = "32 sir john young crescent sydney nsw";
 
-			_databaseProperty.Name = "Super High Apartments Sydney";
-			_databaseProperty.Address = "32 Sir John Young Crescent Sydney NSW";
-
 			//Act
 			var expectedResult = true;
 			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
@@ -141,9 +148,6 @@ namespace AgencyPropertyCleanupTests
 
 			_agencyProperty.Name = "super     high     apartments         sydney";
 			_agencyProperty.Address = "32         sir   john      young    crescent             sydney            nsw";
-
-			_databaseProperty.Name = "Super High Apartments Sydney";
-			_databaseProperty.Address = "32 Sir John Young Crescent Sydney NSW";
 
 			//Act
 			var expectedResult = true;
@@ -173,8 +177,6 @@ namespace AgencyPropertyCleanupTests
 			//Assert
 			Assert.AreEqual(expectedResult, result);
 		}
-		
-		//TODO do the above test with Unicode
 
 		[Test]
 		public void OnlyTheBestPropertyMatchingRules_PropertyNameAndAddressContainsRandomWhiteSpace_MatchMethodReturnsTrue()
