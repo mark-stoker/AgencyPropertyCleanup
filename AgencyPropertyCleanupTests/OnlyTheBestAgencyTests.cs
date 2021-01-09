@@ -40,10 +40,11 @@ namespace AgencyPropertyCleanupTests
 			IAgency agency = agencyFactory.CreateAgency();
 
 			//Act
+			var expectedResult = true;
 			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
 			
 			//Assert
-			Assert.AreEqual(true, result);
+			Assert.AreEqual(expectedResult, result);
 		}
 
 		[Test]
@@ -60,10 +61,11 @@ namespace AgencyPropertyCleanupTests
 			_databaseProperty.Address = "32 Sir John Young Crescent Sydney NSW";
 
 			//Act
+			var expectedResult = true;
 			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
 
 			//Assert
-			Assert.AreEqual(true, result);
+			Assert.AreEqual(expectedResult, result);
 		}
 
 		[Test]
@@ -80,10 +82,11 @@ namespace AgencyPropertyCleanupTests
 			_databaseProperty.Address = "32 Sir John Young Crescent Sydney NSW";
 
 			//Act
+			var expectedResult = false;
 			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
 
 			//Assert
-			Assert.AreEqual(false, result);
+			Assert.AreEqual(expectedResult, result);
 		}
 
 		[Test]
@@ -100,10 +103,11 @@ namespace AgencyPropertyCleanupTests
 			_databaseProperty.Address = "32 Sir John Young Crescent Sydney NSW";
 
 			//Act
+			var expectedResult = true;
 			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
 
 			//Assert
-			Assert.AreEqual(true, result);
+			Assert.AreEqual(expectedResult, result);
 		}
 
 		[Test]
@@ -120,10 +124,11 @@ namespace AgencyPropertyCleanupTests
 			_databaseProperty.Address = "32 Sir John Young Crescent Sydney NSW";
 
 			//Act
+			var expectedResult = true;
 			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
 
 			//Assert
-			Assert.AreEqual(true, result);
+			Assert.AreEqual(expectedResult, result);
 		}
 
 		[Test]
@@ -140,10 +145,11 @@ namespace AgencyPropertyCleanupTests
 			_databaseProperty.Address = "32 Sir John Young Crescent Sydney NSW";
 
 			//Act
+			var expectedResult = true;
 			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
 
 			//Assert
-			Assert.AreEqual(true, result);
+			Assert.AreEqual(expectedResult, result);
 		}
 
 		//[Test]

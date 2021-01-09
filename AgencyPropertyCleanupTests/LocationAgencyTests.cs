@@ -2,7 +2,6 @@ using AgencyPropertyCleanup;
 using AgencyPropertyCleanup.AgencyFactoryMethod;
 using AgencyPropertyCleanup.AgencyFactoryMethod.Interfaces;
 using NUnit.Framework;
-using NUnit.Framework.Constraints;
 
 namespace AgencyPropertyCleanupTests
 {
@@ -43,10 +42,11 @@ namespace AgencyPropertyCleanupTests
 			IAgency agency = agencyFactory.CreateAgency();
 
 			//Act
+			var expectedResult = true;
 			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
 
 			//Assert
-			Assert.AreEqual(true, result);
+			Assert.AreEqual(expectedResult, result);
 		}
 
 		[Test]
@@ -61,10 +61,11 @@ namespace AgencyPropertyCleanupTests
 			_agencyProperty.Latitude = 151.192819601541m;
 
 			//Act
+			var expectedResult = true;
 			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
 
 			//Assert
-			Assert.AreEqual(true, result);
+			Assert.AreEqual(expectedResult, result);
 		}
 
 		[Test]
@@ -78,10 +79,11 @@ namespace AgencyPropertyCleanupTests
 			_agencyProperty.Latitude = 151.19495614459848m;
 
 			//Act
+			var expectedResult = false;
 			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
 
 			//Assert
-			Assert.AreEqual(false, result);
+			Assert.AreEqual(expectedResult, result);
 		}
 
 		[Test]
@@ -95,10 +97,11 @@ namespace AgencyPropertyCleanupTests
 			_agencyProperty.Latitude = 151.78209440879309m;
 
 			//Act
+			var expectedResult = false;
 			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
 
 			//Assert
-			Assert.AreEqual(false, result);
+			Assert.AreEqual(expectedResult, result);
 		}
 
 		[Test]
@@ -112,10 +115,11 @@ namespace AgencyPropertyCleanupTests
 			_agencyProperty.Latitude = 0.00m;
 
 			//Act
+			var expectedResult = false;
 			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
 
 			//Assert
-			Assert.AreEqual(false, result);
+			Assert.AreEqual(expectedResult, result);
 		}
 
 		[Test]
@@ -128,10 +132,11 @@ namespace AgencyPropertyCleanupTests
 			_agencyProperty.AgencyCode = "CRE";
 
 			//Act
+			var expectedResult = false;
 			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
 
 			//Assert
-			Assert.AreEqual(false, result);
+			Assert.AreEqual(expectedResult, result);
 		}
 
 		[Test]
@@ -144,10 +149,11 @@ namespace AgencyPropertyCleanupTests
 			_agencyProperty.AgencyCode = null;
 
 			//Act
+			var expectedResult = false;
 			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
 
 			//Assert
-			Assert.AreEqual(false, result);
+			Assert.AreEqual(expectedResult, result);
 		}
 	}
 }
