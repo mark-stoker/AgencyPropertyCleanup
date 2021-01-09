@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using AgencyPropertyCleanup.AgencyFactoryMethod.Interfaces;
+using AgencyPropertyCleanup.Interfaces;
 
 namespace AgencyPropertyCleanup.AgencyFactoryMethod
 {
@@ -19,11 +21,25 @@ namespace AgencyPropertyCleanup.AgencyFactoryMethod
 			if (agencyProperty.Name == null)
 				return false;
 
-			string[] wordArray = agencyProperty.Name.Split(' ');
+			var reversedSentence = ReverseSentence(agencyProperty.Name);
+
+			return String.Equals(RemoveWhitespace(reversedSentence), RemoveWhitespace(databaseProperty.Name));
+		}
+
+		private static string ReverseSentence(string name)
+		{
+			string[] wordArray = name.Split(' ');
 			Array.Reverse(wordArray);
 			string reversedSentence = string.Join(" ", wordArray);
+			return reversedSentence;
+		}
 
-			return String.Equals(reversedSentence, databaseProperty.Name);
+		private string RemoveWhitespace(string input)
+		{
+			return new string(input.ToCharArray()
+					.Where(c => !Char.IsWhiteSpace(c))
+					.ToArray())
+					.ToLower();
 		}
 	}
 }

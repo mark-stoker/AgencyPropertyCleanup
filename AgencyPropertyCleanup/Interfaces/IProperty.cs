@@ -1,4 +1,4 @@
-﻿namespace AgencyPropertyCleanup
+﻿namespace AgencyPropertyCleanup.Interfaces
 {
 	public interface IProperty
 	{

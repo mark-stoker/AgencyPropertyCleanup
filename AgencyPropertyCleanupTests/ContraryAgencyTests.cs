@@ -1,6 +1,7 @@
 using AgencyPropertyCleanup;
 using AgencyPropertyCleanup.AgencyFactoryMethod;
 using AgencyPropertyCleanup.AgencyFactoryMethod.Interfaces;
+using AgencyPropertyCleanup.Interfaces;
 using NUnit.Framework;
 
 namespace AgencyPropertyCleanupTests
@@ -38,6 +39,55 @@ namespace AgencyPropertyCleanupTests
 			//Arrange
 			IAgencyFactory agencyFactory = new ContraryAgencyFactory();
 			IAgency agency = agencyFactory.CreateAgency();
+
+			//Act
+			var expectedResult = true;
+			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
+
+			//Assert
+			Assert.AreEqual(expectedResult, result);
+		}
+
+		[Test]
+		public void ContraryRealEstateMatchingRules_PropertyNameWithExtraSpacesReversedAndMatchesDB_MatchMethodReturnsTrue()
+		{
+			//Arrange
+			IAgencyFactory agencyFactory = new ContraryAgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency();
+			_agencyProperty.Name = "Apartments Summit The";
+
+			//Act
+			var expectedResult = true;
+			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
+
+			//Assert
+			Assert.AreEqual(expectedResult, result);
+		}
+
+		[Test]
+		public void ContraryRealEstateMatchingRules_PropertyNameWithMixexCaseReversedAndMatchesDB_MatchMethodReturnsTrue()
+		{
+			//Arrange
+			IAgencyFactory agencyFactory = new ContraryAgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency();
+			_agencyProperty.Name = "ApArTmEnTs SuMmIt ThE";
+
+			//Act
+			var expectedResult = true;
+			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
+
+			//Assert
+			Assert.AreEqual(expectedResult, result);
+		}
+
+		[Test]
+		public void ContraryRealEstateMatchingRules_PropertyNameWithASCIIAccentedCharactersReversedAndMatchesDB_MatchMethodReturnsTrue()
+		{
+			//Arrange
+			IAgencyFactory agencyFactory = new ContraryAgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency();
+			_agencyProperty.Name = "Ápártménts Súmmít Thé";
+			_databaseProperty.Name = "Thé Súmmít Ápártménts";
 
 			//Act
 			var expectedResult = true;

@@ -1,6 +1,7 @@
 using AgencyPropertyCleanup;
 using AgencyPropertyCleanup.AgencyFactoryMethod;
 using AgencyPropertyCleanup.AgencyFactoryMethod.Interfaces;
+using AgencyPropertyCleanup.Interfaces;
 using NUnit.Framework;
 
 namespace AgencyPropertyCleanupTests

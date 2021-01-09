@@ -1,4 +1,6 @@
-﻿namespace AgencyPropertyCleanup.AgencyFactoryMethod.Interfaces
+﻿using AgencyPropertyCleanup.Interfaces;
+
+namespace AgencyPropertyCleanup.AgencyFactoryMethod.Interfaces
 {
 	public interface IPropertyMatcher
 	{
