@@ -52,14 +52,14 @@ namespace AgencyPropertyCleanupTests
 		}
 
 		[Test]
-		public void LocationRealEstatePropertyMatchingRules_CoordinatesAre69mApart_MatchMethodReturnsTrue()
+		public void LocationRealEstatePropertyMatchingRules_CoordinatesAre74mApart_MatchMethodReturnsTrue()
 		{
 			//Arrange
 			IAgencyFactory agencyFactory = new LocationAgencyFactory();
 			IAgency agency = agencyFactory.CreateAgency();
 
-			_agencyProperty.Latitude = -33.86974404504831m;
-			_agencyProperty.Longitude = 151.192819601541m;
+			_agencyProperty.Latitude = -33.8704650641735m;
+			_agencyProperty.Longitude = 151.19327692034656m;
 
 			//Act
 			var expectedResult = true;
@@ -70,14 +70,14 @@ namespace AgencyPropertyCleanupTests
 		}
 
 		[Test]
-		public void LocationRealEstatePropertyMatchingRules_CoordinatesAre190mApart_MatchMethodReturnsTrue()
+		public void LocationRealEstatePropertyMatchingRules_CoordinatesAre198mApart_MatchMethodReturnsTrue()
 		{
 			//Arrange
 			IAgencyFactory agencyFactory = new LocationAgencyFactory();
 			IAgency agency = agencyFactory.CreateAgency();
 
-			_agencyProperty.Latitude = -33.869998418662725m;
-			_agencyProperty.Longitude = 151.19388990421092m;
+			_agencyProperty.Latitude = -33.87026908171481m;
+			_agencyProperty.Longitude = 151.19459586212446m;
 
 			//Act
 			var expectedResult = true;
@@ -88,17 +88,17 @@ namespace AgencyPropertyCleanupTests
 		}
 
 		[Test]
-		public void LocationRealEstatePropertyMatchingRules_CoordinatesAre210mApart_MatchMethodReturnsFalse()
+		public void LocationRealEstatePropertyMatchingRules_CoordinatesAre201mApart_MatchMethodReturnsFalse()
 		{
 			//Arrange
 			IAgencyFactory agencyFactory = new LocationAgencyFactory();
 			IAgency agency = agencyFactory.CreateAgency();
 
-			_agencyProperty.Latitude = -33.86995770861321m;
-			_agencyProperty.Longitude = 151.19433375715846m;
+			_agencyProperty.Latitude = -33.87026113647057m;
+			_agencyProperty.Longitude = 151.19462297459012m;
 
 			//Act
-			var expectedResult = true;
+			var expectedResult = false;
 			var result = agency.IsMatch(_agencyProperty, _databaseProperty);
 
 			//Assert
@@ -106,14 +106,14 @@ namespace AgencyPropertyCleanupTests
 		}
 
 		[Test]
-		public void LocationRealEstatePropertyMatchingRules_CoordinatesAre350mApart_MatchMethodReturnsFalse()
+		public void LocationRealEstatePropertyMatchingRules_CoordinatesAre325mApart_MatchMethodReturnsFalse()
 		{
 			//Arrange
 			IAgencyFactory agencyFactory = new LocationAgencyFactory();
 			IAgency agency = agencyFactory.CreateAgency();
 
-			_agencyProperty.Latitude = -33.871077461586744m;
-			_agencyProperty.Longitude = 151.19495614459848m;
+			_agencyProperty.Latitude = -33.86979898682514m;
+			_agencyProperty.Longitude = 151.1958797170757m;
 
 			//Act
 			var expectedResult = false;

@@ -1,8 +1,6 @@
 ﻿using System;
 using AgencyPropertyCleanup.AgencyFactoryMethod.Interfaces;
 using AgencyPropertyCleanup.Interfaces;
-//using GeoCoordinatePortable;
-
 
 namespace AgencyPropertyCleanup.AgencyFactoryMethod
 {
@@ -32,25 +30,24 @@ namespace AgencyPropertyCleanup.AgencyFactoryMethod
 
 		private double CalculateDistance(IProperty agencyProperty, IProperty databaseProperty)
 		{
-			//var agencyCoordinates = new GeoCoordinate((double)agencyProperty.Latitude, (double)agencyProperty.Longitude);
-			//var databaseCoordinates = new GeoCoordinate((double)databaseProperty.Latitude, (double)databaseProperty.Longitude);
-			//return agencyCoordinates.GetDistanceTo(databaseCoordinates);
-
-			return GetDistance((double)agencyProperty.Longitude, (double)agencyProperty.Latitude,
-				(double)databaseProperty.Longitude, (double)databaseProperty.Latitude);
+			return GetDistance((double)agencyProperty.Latitude, (double)agencyProperty.Longitude,
+				(double)databaseProperty.Latitude, (double)databaseProperty.Longitude);
 		}
 
-		//Returns distance in metres between two points
-		//The requirements state: assume that 1 degree of agencyLatitude or agencyLongitude is equal to 111km, I'm not sure how to apply this
-		private double GetDistance(double agencyLongitude, double agencyLatitude, double databaseLongitude, double databaseLatitude)
+		//TODO 1 degree of latitude or longitude is equal to 111km
+		private double GetDistance(double agencyLatitude, double agencyLongitude, double databaseLatitude, double databaseLongitude)
 		{
-			var d1 = agencyLatitude * (Math.PI / 180.0);
-			var num1 = agencyLongitude * (Math.PI / 180.0);
-			var d2 = databaseLatitude * (Math.PI / 180.0);
-			var num2 = databaseLongitude * (Math.PI / 180.0) - num1;
-			var d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin(num2 / 2.0), 2.0);
+			var radiansOverDegrees = (Math.PI / 180.0);
 
-			return 6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3)));
+			var agencyLatitudeRadians = agencyLatitude * radiansOverDegrees;
+			var agencyLongitudeRadians = agencyLongitude * radiansOverDegrees;
+			var databaseLatitudeRadians = databaseLatitude * radiansOverDegrees;
+			var databaseLongitudeRadians = databaseLongitude * radiansOverDegrees - agencyLongitudeRadians;
+
+			var haversineFormulaResult = Math.Pow(Math.Sin((databaseLatitudeRadians - agencyLatitudeRadians) / 2.0), 2.0) + Math.Cos(agencyLatitudeRadians) * Math.Cos(databaseLatitudeRadians) * Math.Pow(Math.Sin(databaseLongitudeRadians / 2.0), 2.0);
+
+			var radiusOfEarth = 6376500.0; //Meters
+			return radiusOfEarth * (2.0 * Math.Atan2(Math.Sqrt(haversineFormulaResult), Math.Sqrt(1.0 - haversineFormulaResult)));
 		}
 	}
 }
