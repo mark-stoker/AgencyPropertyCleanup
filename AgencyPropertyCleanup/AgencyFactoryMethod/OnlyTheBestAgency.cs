@@ -5,7 +5,7 @@ using AgencyPropertyCleanup.Interfaces;
 
 namespace AgencyPropertyCleanup.AgencyFactoryMethod
 {
-	public class OnlyTheBestAgency : IAgency, IPropertyMatcher
+	public class OnlyTheBestAgency : IAgency
 	{
 		public string Name { get; set; }
 		public string AgencyCode { get; set; }

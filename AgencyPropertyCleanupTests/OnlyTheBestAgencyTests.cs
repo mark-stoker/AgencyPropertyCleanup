@@ -23,7 +23,6 @@ namespace AgencyPropertyCleanupTests
 				Latitude = 151.19248064675406m
 			};
 
-			//TODO put in punctation here too, assume brief is not a mistake
 			_databaseProperty = new Property
 			{
 				Address = "32 Sir John Young Crescent, Sydney NSW",

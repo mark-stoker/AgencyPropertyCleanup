@@ -1,4 +1,3 @@
-using System.Text;
 using AgencyPropertyCleanup;
 using AgencyPropertyCleanup.AgencyFactoryMethod;
 using AgencyPropertyCleanup.AgencyFactoryMethod.Interfaces;
