@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using AgencyPropertyCleanup.AgencyFactoryMethod.Interfaces;
-using AgencyPropertyCleanup.Interfaces;
 
 namespace AgencyPropertyCleanup.AgencyFactoryMethod
 {
@@ -16,7 +15,7 @@ namespace AgencyPropertyCleanup.AgencyFactoryMethod
 			AgencyCode = "CRE";
 		}
 
-		public bool IsMatch(IProperty agencyProperty, IProperty databaseProperty)
+		public bool IsMatch(Property agencyProperty, Property databaseProperty)
 		{
 			if (agencyProperty.Name == null)
 				return false;

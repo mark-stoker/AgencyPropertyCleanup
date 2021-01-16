@@ -16,7 +16,7 @@ namespace AgencyPropertyCleanup.AgencyFactoryMethod
 			AgencyCode = "OTBRE";
 		}
 
-		public bool IsMatch(IProperty agencyProperty, IProperty databaseProperty)
+		public bool IsMatch(Property agencyProperty, Property databaseProperty)
 		{
 			var agencySourceProperty = RemovePunctuation(agencyProperty.Name + agencyProperty.Address);
 			var databaseTargetProperty = RemovePunctuation(databaseProperty.Name + databaseProperty.Address);

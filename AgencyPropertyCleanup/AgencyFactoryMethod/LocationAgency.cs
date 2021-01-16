@@ -1,6 +1,5 @@
 ﻿using System;
 using AgencyPropertyCleanup.AgencyFactoryMethod.Interfaces;
-using AgencyPropertyCleanup.Interfaces;
 
 namespace AgencyPropertyCleanup.AgencyFactoryMethod
 {
@@ -17,7 +16,7 @@ namespace AgencyPropertyCleanup.AgencyFactoryMethod
 			AgencyCode = "LRE";
 		}
 
-		public bool IsMatch(IProperty agencyProperty, IProperty databaseProperty)
+		public bool IsMatch(Property agencyProperty, Property databaseProperty)
 		{
 			if (!String.Equals(agencyProperty.AgencyCode, databaseProperty.AgencyCode))
 				return false;
@@ -28,7 +27,7 @@ namespace AgencyPropertyCleanup.AgencyFactoryMethod
 			return false;
 		}
 
-		private double CalculateDistance(IProperty agencyProperty, IProperty databaseProperty)
+		private double CalculateDistance(Property agencyProperty, Property databaseProperty)
 		{
 			return GetDistance((double)agencyProperty.Latitude, (double)agencyProperty.Longitude,
 				(double)databaseProperty.Latitude, (double)databaseProperty.Longitude);

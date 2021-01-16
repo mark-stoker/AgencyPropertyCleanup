@@ -8,9 +8,8 @@ namespace AgencyPropertyCleanupTests
 {
 	public class LocationAgencyTests
 	{
-		//I need to pre-populate these, autofixture?
-		private IProperty _agencyProperty;
-		private IProperty _databaseProperty;
+		private Property _agencyProperty;
+		private Property _databaseProperty;
 
 		[SetUp]
 		public void Setup()

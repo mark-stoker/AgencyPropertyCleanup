@@ -2,7 +2,7 @@
 
 namespace AgencyPropertyCleanup
 {
-	public class Property : IProperty
+	public class Property
 	{
 		public string Address { get; set; }
 		public string AgencyCode { get; set; }
