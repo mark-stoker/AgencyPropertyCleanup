@@ -37,8 +37,8 @@ namespace AgencyPropertyCleanupTests
 		public void OnlyTheBestPropertyMatchingRules_PropertyNameAndAddressHavePunctuation_MatchMethodReturnsTrue()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new OnlyTheBestAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Only The Best");
 
 			//Act
 			var expectedResult = true;
@@ -52,8 +52,8 @@ namespace AgencyPropertyCleanupTests
 		public void OnlyTheBestPropertyMatchingRules_PropertyNameAndAddressHaveNoPunctuation_MatchMethodReturnsTrue()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new OnlyTheBestAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Only The Best");
 
 			_agencyProperty.Name = "Super High APARTMENTS Sydney";
 			_agencyProperty.Address = "32 Sir John Young Crescent, Sydney, NSW.";
@@ -70,8 +70,8 @@ namespace AgencyPropertyCleanupTests
 		public void OnlyTheBestPropertyMatchingRules_PropertyNameAndAddressAreNull_MatchMethodReturnsFalse()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new OnlyTheBestAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Only The Best");
 
 			_agencyProperty.Name = null;
 			_agencyProperty.Address = null;
@@ -88,8 +88,8 @@ namespace AgencyPropertyCleanupTests
 		public void OnlyTheBestPropertyMatchingRules_PropertyNameAndAddressAreEmptyStrings_MatchMethodReturnsFalse()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new OnlyTheBestAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Only The Best");
 
 			_agencyProperty.Name = string.Empty;
 			_agencyProperty.Address = string.Empty;
@@ -106,8 +106,8 @@ namespace AgencyPropertyCleanupTests
 		public void OnlyTheBestPropertyMatchingRules_PropertyNameAndAdressAllUpperCase_MatchMethodReturnsTrue()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new OnlyTheBestAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Only The Best");
 
 			_agencyProperty.Name = "SUPER HIGH APARTMENTS SYDNEY";
 			_agencyProperty.Address = "32 SIR JOHN YOUNG CRESCENT SYDNEY NSW";
@@ -124,8 +124,8 @@ namespace AgencyPropertyCleanupTests
 		public void OnlyTheBestPropertyMatchingRules_PropertyNameAndAddressAllLowerCase_MatchMethodReturnsTrue()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new OnlyTheBestAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Only The Best");
 
 			_agencyProperty.Name = "super high apartments sydney";
 			_agencyProperty.Address = "32 sir john young crescent sydney nsw";
@@ -142,8 +142,8 @@ namespace AgencyPropertyCleanupTests
 		public void OnlyTheBestPropertyMatchingRules_PropertyNameAndAddressContainsRandomSpaces_MatchMethodReturnsTrue()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new OnlyTheBestAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Only The Best");
 
 			_agencyProperty.Name = "super     high     apartments         sydney";
 			_agencyProperty.Address = "32         sir   john      young    crescent             sydney            nsw";
@@ -160,8 +160,8 @@ namespace AgencyPropertyCleanupTests
 		public void OnlyTheBestPropertyMatchingRules_PropertyNameAndAddressContainsASCIIAcentedCharacters_MatchMethodReturnsTrue()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new OnlyTheBestAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Only The Best");
 
 			_agencyProperty.Name = "*Sùpér*-High! ÃPARTMENTS (Sydnéy)";
 			_agencyProperty.Address = "32 Sir John-Young Créscént, Sydnéy, NSW.";
@@ -181,8 +181,8 @@ namespace AgencyPropertyCleanupTests
 		public void OnlyTheBestPropertyMatchingRules_PropertyNameAndAddressContainsRandomWhiteSpace_MatchMethodReturnsTrue()
 		{
 			//Arrange
-			var agencyFactory = new OnlyTheBestAgencyFactory();
-			var agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Only The Best");
 
 			_agencyProperty.Name = "Super\n\r\t  High\n\r\t APARTMENTS\n\r\t  Sydney\n\r\t ";
 			_agencyProperty.Address = "32\n\r\t  Sir\n\r\t  John\n\r\t  Young\n\r\t  Crescent\n\r\t , Sydney\n\r\t , NSW.\n\r\t ";

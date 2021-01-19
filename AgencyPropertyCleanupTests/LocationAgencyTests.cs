@@ -8,7 +8,6 @@ namespace AgencyPropertyCleanupTests
 {
 	public class LocationAgencyTests
 	{
-		//I need to pre-populate these, autofixture?
 		private IProperty _agencyProperty;
 		private IProperty _databaseProperty;
 
@@ -40,8 +39,8 @@ namespace AgencyPropertyCleanupTests
 		public void LocationRealEstatePropertyMatchingRules_CoordinatesMatchExactly_MatchMethodReturnsTrue()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new LocationAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Location");
 
 			//Act
 			var expectedResult = true;
@@ -55,8 +54,8 @@ namespace AgencyPropertyCleanupTests
 		public void LocationRealEstatePropertyMatchingRules_CoordinatesAre74mApart_MatchMethodReturnsTrue()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new LocationAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Location");
 
 			_agencyProperty.Latitude = -33.8704650641735m;
 			_agencyProperty.Longitude = 151.19327692034656m;
@@ -73,8 +72,8 @@ namespace AgencyPropertyCleanupTests
 		public void LocationRealEstatePropertyMatchingRules_CoordinatesAre198mApart_MatchMethodReturnsTrue()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new LocationAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Location");
 
 			_agencyProperty.Latitude = -33.87026908171481m;
 			_agencyProperty.Longitude = 151.19459586212446m;
@@ -91,8 +90,8 @@ namespace AgencyPropertyCleanupTests
 		public void LocationRealEstatePropertyMatchingRules_CoordinatesAre201mApart_MatchMethodReturnsFalse()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new LocationAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Location");
 
 			_agencyProperty.Latitude = -33.87026113647057m;
 			_agencyProperty.Longitude = 151.19462297459012m;
@@ -109,8 +108,8 @@ namespace AgencyPropertyCleanupTests
 		public void LocationRealEstatePropertyMatchingRules_CoordinatesAre325mApart_MatchMethodReturnsFalse()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new LocationAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Location");
 
 			_agencyProperty.Latitude = -33.86979898682514m;
 			_agencyProperty.Longitude = 151.1958797170757m;
@@ -127,8 +126,8 @@ namespace AgencyPropertyCleanupTests
 		public void LocationRealEstatePropertyMatchingRules_CoordinatesAre171kmAway_MatchMethodReturnsFalse()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new LocationAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Location");
 
 			_agencyProperty.Latitude = -32.92175413965179m;
 			_agencyProperty.Longitude = 151.78209440879309m;
@@ -145,8 +144,8 @@ namespace AgencyPropertyCleanupTests
 		public void LocationRealEstatePropertyMatchingRules_CoordinatesPropertiesAreZero_MatchMethodReturnsFalse()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new LocationAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Location");
 
 			_agencyProperty.Latitude = 0.00m;
 			_agencyProperty.Longitude = 0.00m;
@@ -163,8 +162,8 @@ namespace AgencyPropertyCleanupTests
 		public void LocationRealEstatePropertyMatchingRules_AgencyCodesDontMatch_MatchMethodReturnsFalse()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new LocationAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Location");
 
 			_agencyProperty.AgencyCode = "CRE";
 
@@ -180,8 +179,8 @@ namespace AgencyPropertyCleanupTests
 		public void LocationRealEstatePropertyMatchingRules_AgencyCodesAreNull_MatchMethodReturnsFalse()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new LocationAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Location");
 
 			_agencyProperty.AgencyCode = null;
 
@@ -192,5 +191,7 @@ namespace AgencyPropertyCleanupTests
 			//Assert
 			Assert.AreEqual(expectedResult, result);
 		}
+
+		//TODO missed agencycode = String.Empty
 	}
 }

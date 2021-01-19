@@ -37,8 +37,8 @@ namespace AgencyPropertyCleanupTests
 		public void ContraryRealEstateMatchingRules_PropertyNameReversedAndMatchesDB_MatchMethodReturnsTrue()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new ContraryAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Contrary");
 
 			//Act
 			var expectedResult = true;
@@ -52,9 +52,9 @@ namespace AgencyPropertyCleanupTests
 		public void ContraryRealEstateMatchingRules_PropertyNameWithExtraSpacesReversedAndMatchesDB_MatchMethodReturnsTrue()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new ContraryAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
-			_agencyProperty.Name = "Apartments Summit The";
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Contrary");
+			_agencyProperty.Name = "Apartments Summit    The";
 
 			//Act
 			var expectedResult = true;
@@ -68,8 +68,8 @@ namespace AgencyPropertyCleanupTests
 		public void ContraryRealEstateMatchingRules_PropertyNameWithMixexCaseReversedAndMatchesDB_MatchMethodReturnsTrue()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new ContraryAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Contrary");
 			_agencyProperty.Name = "ApArTmEnTs SuMmIt ThE";
 
 			//Act
@@ -84,8 +84,8 @@ namespace AgencyPropertyCleanupTests
 		public void ContraryRealEstateMatchingRules_PropertyNameWithASCIIAccentedCharactersReversedAndMatchesDB_MatchMethodReturnsTrue()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new ContraryAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Contrary");
 			_agencyProperty.Name = "Ápártménts Súmmít Thé";
 			_databaseProperty.Name = "Thé Súmmít Ápártménts";
 
@@ -101,8 +101,8 @@ namespace AgencyPropertyCleanupTests
 		public void ContraryRealEstateMatchingRules_PropertyNameReversedAndDoesntMatchesDB_MatchMethodReturnsFalse()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new ContraryAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Contrary");
 			_agencyProperty.Name = "some new value";
 
 			//Act
@@ -117,8 +117,8 @@ namespace AgencyPropertyCleanupTests
 		public void ContraryRealEstateMatchingRules_PropertyNameIsNull_MatchMethodReturnsFalse()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new ContraryAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Contrary");
 			_agencyProperty.Name = null;
 
 			//Act
@@ -133,8 +133,8 @@ namespace AgencyPropertyCleanupTests
 		public void ContraryRealEstateMatchingRules_PropertyNameEmptyString_MatchMethodReturnsFalse()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new ContraryAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Contrary");
 			_agencyProperty.Name = string.Empty;
 
 			//Act
@@ -149,9 +149,9 @@ namespace AgencyPropertyCleanupTests
 		public void ContraryRealEstateMatchingRules_PropertyNameWithRandomWhiteSpaceCharactersReversedAndMatchesDB_MatchMethodReturnsTrue()
 		{
 			//Arrange
-			IAgencyFactory agencyFactory = new ContraryAgencyFactory();
-			IAgency agency = agencyFactory.CreateAgency();
-			_agencyProperty.Name = "Apartments\n\r\t Summit\n\r\t The\n\r\t";
+			IAgencyFactory agencyFactory = new AgencyFactory();
+			IAgency agency = agencyFactory.CreateAgency("Contrary");
+			_agencyProperty.Name = $"Apartments\n\r\t Summit\n\r\t The\n\r\t";
 			
 			//Act
 			var expectedResult = true;
