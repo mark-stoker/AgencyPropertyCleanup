@@ -16,9 +16,7 @@ namespace AgencyPropertyCleanup.AgencyFactoryMethod
 				case "Only The Best":
 					return new OnlyTheBestAgency();
 				default:
-					return null;
-					//Console.WriteLine("Enter value agency");
-					//break;
+					throw new Exception("Agency not recognised");
 			}
 		}
 	}
